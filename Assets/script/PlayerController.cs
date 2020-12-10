@@ -7,7 +7,10 @@ public class PlayerController : MonoBehaviour
     private int maxRaycastDistance = 1000;
 
     [SerializeField]
-    private LayerMask layerMaskForSolid; 
+    private LayerMask layerMaskForSolid;
+    [SerializeField]
+    private LayerMask collisionLayerMask; 
+
 
     [SerializeField]
     private string groundTag;
@@ -85,15 +88,16 @@ public class PlayerController : MonoBehaviour
     }
     public void CollisionDetection(Vector3 center, float radius)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius,collisionLayerMask);
         foreach (var hitCollider in hitColliders)
         {
+            hitCollider.enabled = false;
             if (hitCollider.gameObject.CompareTag("chest"))
             {
                 //score +100 et spawn new chest
                 Debug.Log("coucou");
-                //Destroy(hitCollider.gameObject);
-                //gameController.isChestActive = false;
+                Destroy(hitCollider.gameObject);
+                gameController.isChestActive = false;
             }
             if (hitCollider.gameObject.CompareTag("projectile"))
             {
