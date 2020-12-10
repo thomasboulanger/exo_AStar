@@ -8,8 +8,13 @@ public class GameController : MonoBehaviour, AStar.Level
     [SerializeField] private PlayerController player;
     private PlayerController spawnedPlayer;
     [SerializeField] private MazeGenerator mazeGenerator;
+    [SerializeField] private ProjectilesSpawn projectiles;
     private int[,] maze;
     public bool toggleDiagonal = false;
+
+    private float timer = 0f;
+    private bool isPaused = false;
+
 
     private void Start()
     {
@@ -106,4 +111,21 @@ public class GameController : MonoBehaviour, AStar.Level
         int costy = to.y - from.y;
         return Mathf.Sqrt(costx * costx + costy * costy);
     }
+
+    private void Update()
+    {
+        float spawnAtRandomTime = 3f;
+
+        if (!isPaused)
+        {
+            timer += Time.deltaTime;
+        }
+        if (timer >= spawnAtRandomTime)
+        {
+            spawnAtRandomTime = Random.Range(.2f, 4f);
+            timer = 0f;
+            projectiles.SpawnProjectile();
+        }
+    }
+    
 }
