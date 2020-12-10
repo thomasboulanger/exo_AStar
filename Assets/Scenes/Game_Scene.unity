@@ -203,6 +203,8 @@ MonoBehaviour:
   mazeGenerator: {fileID: 585716682}
   projectiles: {fileID: 1635245068}
   toggleDiagonal: 1
+  isPaused: 0
+  chest: {fileID: 6729002501324986606, guid: 82ece644762dad14d8f760edb60b02b7, type: 3}
 --- !u!4 &693984395
 Transform:
   m_ObjectHideFlags: 0
@@ -405,7 +407,7 @@ GameObject:
   - component: {fileID: 1007748146}
   - component: {fileID: 1007748145}
   m_Layer: 8
-  m_Name: map
+  m_Name: ground
   m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

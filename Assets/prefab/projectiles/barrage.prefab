@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -1456190861500758598}
   m_Layer: 0
   m_Name: barrage
-  m_TagString: Untagged
+  m_TagString: projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

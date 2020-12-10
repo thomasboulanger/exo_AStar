@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
 
         if (moving)
         {
-            if (transform.position != nextPointInPath)
+            if (transform.position != nextPointInPath && !gameController.isPaused)
             {
                 transform.position = Vector3.MoveTowards(transform.position, nextPointInPath, moveSpeed * Time.deltaTime);
             }
@@ -75,5 +75,23 @@ public class PlayerController : MonoBehaviour
     {
         otherPointsInPath.Clear();
         otherPointsInPath.AddRange(newPath);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("chest"))
+        {
+            //score +100 et spawn new chest
+            Debug.Log("coucou");
+            Destroy(other.gameObject);
+            gameController.isChestActive = false;
+        }
+
+        if (other.gameObject.CompareTag("projectile"))
+        {
+            //game over
+            Debug.Log("u ded");
+
+        }
     }
 }

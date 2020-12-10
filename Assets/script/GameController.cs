@@ -13,7 +13,10 @@ public class GameController : MonoBehaviour, AStar.Level
     public bool toggleDiagonal = false;
 
     private float timer = 0f;
-    private bool isPaused = false;
+    public bool isPaused = false;
+
+    public GameObject chest;
+    public bool isChestActive = false;
 
 
     private void Start()
@@ -21,6 +24,8 @@ public class GameController : MonoBehaviour, AStar.Level
         maze = mazeGenerator.CreateMaze();
         createMaze3D(maze,mur);
         SpawnPlayer(maze, player);
+        SpawnChest(maze, chest);
+        isChestActive = true;
     }
 
     private void SpawnPlayer(int[,] maze, PlayerController player)
@@ -112,11 +117,24 @@ public class GameController : MonoBehaviour, AStar.Level
         return Mathf.Sqrt(costx * costx + costy * costy);
     }
 
+
+    private void SpawnChest(int[,] maze, GameObject chest)
+    {
+            (int, int) pos = StartingPoint(maze);
+            GameObject Chest = Instantiate(chest, FromMazeTo3D(pos) + Vector3.up, Quaternion.identity);
+    }
+
     private void Update()
     {
         float spawnAtRandomTime = 3f;
 
-        if (!isPaused)
+        if (isChestActive == false)
+        {
+            SpawnChest(maze, chest);
+            isChestActive = true;
+        }
+
+        if (isPaused == false)
         {
             timer += Time.deltaTime;
         }
