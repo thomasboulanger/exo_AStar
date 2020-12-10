@@ -43,7 +43,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 11
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -72,7 +72,7 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
-    m_BakeBackend: 1
+    m_BakeBackend: 2
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
@@ -97,8 +97,9 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: 7dec5b2aea0b8ba4db60b10f3f8c841f, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 1591dfd0869556d4e998b618cc686024,
+    type: 2}
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -118,8 +119,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-    maxJobWorkers: 0
-    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -205,6 +204,7 @@ MonoBehaviour:
   toggleDiagonal: 1
   isPaused: 0
   chest: {fileID: 6729002501324986606, guid: 82ece644762dad14d8f760edb60b02b7, type: 3}
+  isChestActive: 0
 --- !u!4 &693984395
 Transform:
   m_ObjectHideFlags: 0
@@ -411,7 +411,7 @@ GameObject:
   m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!64 &1007748145
 MeshCollider:
@@ -442,7 +442,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -467,7 +466,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!33 &1007748147
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -534,7 +532,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   center: {fileID: 1635245066}
-  projectile_1: {fileID: 7368572479407646375, guid: 2b0c83d7d9664b547830090145ecf95a, type: 3}
-  projectile_2: {fileID: 8395240248910068930, guid: cda441a3e66b2f64f95cd79ee2ea115d, type: 3}
-  projectile_3: {fileID: 2610835868935647947, guid: f667aedf9de78114183e22f73bd067d1, type: 3}
+  projectile_1: {fileID: 7368572479407646375, guid: 2b0c83d7d9664b547830090145ecf95a,
+    type: 3}
+  projectile_2: {fileID: 8395240248910068930, guid: cda441a3e66b2f64f95cd79ee2ea115d,
+    type: 3}
+  projectile_3: {fileID: 2610835868935647947, guid: f667aedf9de78114183e22f73bd067d1,
+    type: 3}
   distance: 35
