@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, maxRaycastDistance, layerMaskForSolid))
             {
-                Debug.Log("Raycasting : " + hit.point + " on " + hit.collider.gameObject.tag);
+                //Debug.Log("Raycasting : " + hit.point + " on " + hit.collider.gameObject.tag);
                 if (hit.collider.gameObject.CompareTag(groundTag))
                 {
                     gameController.MovePlayer(hit.point);
