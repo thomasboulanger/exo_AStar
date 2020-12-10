@@ -77,21 +77,30 @@ public class PlayerController : MonoBehaviour
         otherPointsInPath.AddRange(newPath);
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    private void FixedUpdate()
     {
-        if (other.gameObject.CompareTag("chest"))
+        Vector3 center = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+        CollisionDetection(center, .5f);
+    }
+    public void CollisionDetection(Vector3 center, float radius)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
+        foreach (var hitCollider in hitColliders)
         {
-            //score +100 et spawn new chest
-            Debug.Log("coucou");
-            Destroy(other.gameObject);
-            gameController.isChestActive = false;
-        }
-
-        if (other.gameObject.CompareTag("projectile"))
-        {
-            //game over
-            Debug.Log("u ded");
-
+            if (hitCollider.gameObject.CompareTag("chest"))
+            {
+                //score +100 et spawn new chest
+                Debug.Log("coucou");
+                //Destroy(hitCollider.gameObject);
+                //gameController.isChestActive = false;
+            }
+            if (hitCollider.gameObject.CompareTag("projectile"))
+            {
+                //game over
+                Debug.Log("u ded");
+            }
         }
     }
+    
 }
