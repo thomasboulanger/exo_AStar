@@ -13,7 +13,7 @@ public class ProjectileMovement : MonoBehaviour
         var gc = GameObject.FindWithTag("GameController");
         if (null == gc)
         {
-            Debug.LogError("[PlayerController] GameController missing");
+            Debug.LogError("[ProjectileMovement] GameController missing");
         }
         else
         {
@@ -28,9 +28,13 @@ public class ProjectileMovement : MonoBehaviour
 
     void Update()
     {
-        if (!gameController.isPaused)
+        if (gameController.isPaused == false)
         {
             rb.velocity = transform.forward * speed;
+        }
+        else
+        {
+            rb.velocity = transform.forward * 0f;
         }
     }
 }

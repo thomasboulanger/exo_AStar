@@ -12,8 +12,6 @@ public class ProjectilesSpawn : MonoBehaviour
     [SerializeField] private float distance = 25f;
 
     private Vector3 _centerOfMap;
-    private int _nbProjectile = 0;
-    private float _projectileSpeed;
     private float _XPos;
     private float _YPos;
     private Vector3 _projectileDirection;
@@ -26,7 +24,6 @@ public class ProjectilesSpawn : MonoBehaviour
 
     public void SpawnProjectile()
     {
-        _projectileSpeed = Random.Range(5f, 20f);
         int switchCase = Random.Range(0, 3);
         float randomAngle = Random.Range(0f, (float)2 * Mathf.PI);
         _XPos = Mathf.Cos(randomAngle)* distance + _centerOfMap.x;
@@ -35,7 +32,6 @@ public class ProjectilesSpawn : MonoBehaviour
         _projectileViewDirection = Random.Range(-30f,30f);
         
         
-        _nbProjectile++;
         GameObject go = null;
 
         switch (switchCase)

@@ -3,19 +3,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private int maxRaycastDistance = 1000;
-
-    [SerializeField]
-    private LayerMask layerMaskForSolid;
-    [SerializeField]
-    private LayerMask collisionLayerMask; 
-
-
-    [SerializeField]
-    private string groundTag;
+    [SerializeField] private int maxRaycastDistance = 1000;
+    [SerializeField] private LayerMask layerMaskForSolid;
+    [SerializeField] private LayerMask collisionLayerMask; 
+    [SerializeField] private string groundTag;
 
     private GameController gameController;
+
+    public static int score = 0;
 
     private void Awake()
     {
@@ -28,6 +23,11 @@ public class PlayerController : MonoBehaviour
         {
             gameController = gc.GetComponent<GameController>();
         }
+    }
+
+    private void Start()
+    {
+        score = 0;
     }
 
     void Update()
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
         if (moving)
         {
-            if (transform.position != nextPointInPath && !gameController.isPaused)
+            if (transform.position != nextPointInPath && gameController.isPaused == false)
             {
                 transform.position = Vector3.MoveTowards(transform.position, nextPointInPath, moveSpeed * Time.deltaTime);
             }
@@ -95,14 +95,14 @@ public class PlayerController : MonoBehaviour
             if (hitCollider.gameObject.CompareTag("chest"))
             {
                 //score +100 et spawn new chest
-                Debug.Log("coucou");
+                score += 100;
                 Destroy(hitCollider.gameObject);
                 gameController.isChestActive = false;
             }
             if (hitCollider.gameObject.CompareTag("projectile"))
             {
                 //game over
-                Debug.Log("u ded");
+                gameController.gameOver = true;
             }
         }
     }

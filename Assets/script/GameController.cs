@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour, AStar.Level
 
     public GameObject chest;
     public bool isChestActive = false;
+    public bool gameOver = false;
 
 
     private void Start()
@@ -127,23 +128,30 @@ public class GameController : MonoBehaviour, AStar.Level
     private void Update()
     {
         float spawnAtRandomTime = 3f;
+        if (gameOver == false)
+        {
+            if (isChestActive == false && isPaused == false)
+            {
+                SpawnChest(maze, chest);
+                isChestActive = true;
+            }
 
-        if (isChestActive == false)
+            if (isPaused == false)
+            {
+                timer += Time.deltaTime;
+            }
+            if (timer >= spawnAtRandomTime)
+            {
+                spawnAtRandomTime = Random.Range(.2f, 4f);
+                timer = 0f;
+                projectiles.SpawnProjectile();
+            }
+        }
+        else
         {
-            SpawnChest(maze, chest);
-            isChestActive = true;
+
         }
 
-        if (isPaused == false)
-        {
-            timer += Time.deltaTime;
-        }
-        if (timer >= spawnAtRandomTime)
-        {
-            spawnAtRandomTime = Random.Range(.2f, 4f);
-            timer = 0f;
-            projectiles.SpawnProjectile();
-        }
     }
     
 }
