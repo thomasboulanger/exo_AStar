@@ -75,10 +75,6 @@ public class UIController : MonoBehaviour
         gameController.isPaused = false;
         gameController.gameOver = false;
     }
-    public void PlayButton()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
     public void QuitButton()
     {
         Application.Quit();
