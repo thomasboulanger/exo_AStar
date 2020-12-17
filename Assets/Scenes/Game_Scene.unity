@@ -1527,7 +1527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a624e299797396438ccb111e82998d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 0}
+  wall: {fileID: 804814199505288812, guid: 7810b5641b53009468db40e14c4f0a31, type: 3}
   player: {fileID: -7779058841079457394, guid: 3072beb53e1e730498d980add17ed3f1, type: 3}
   mazeGenerator: {fileID: 585716682}
   projectiles: {fileID: 1635245068}
