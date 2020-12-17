@@ -1,18 +1,17 @@
-﻿using UnityEngine.Audio;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
+    public AudioSource audioSource;
     public AudioClip UIClic;
     public AudioClip deathSound;
 
-    void Start()
+    public void DeathSound()
     {
-        
+        audioSource.PlayOneShot(deathSound);
     }
-
-    void Update()
+    public void ButtonClic()
     {
-        
+        audioSource.PlayOneShot(UIClic);
     }
 }

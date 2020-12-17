@@ -8,6 +8,8 @@ TagManager:
   - wall
   - chest
   - projectile
+  - UIManager
+  - AudioController
   layers:
   - Default
   - TransparentFX

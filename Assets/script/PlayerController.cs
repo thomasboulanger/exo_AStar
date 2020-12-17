@@ -9,12 +9,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private string groundTag;
 
     private GameController gameController;
+    private AudioController audioController;
 
     public static int score = 0;
 
     private void Awake()
     {
         var gc = GameObject.FindWithTag("GameController");
+        var ac = GameObject.FindWithTag("AudioController");
         if (null == gc)
         {
             Debug.LogError("[PlayerController] GameController missing");
@@ -22,6 +24,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             gameController = gc.GetComponent<GameController>();
+        }
+        if (null == ac)
+        {
+            Debug.LogError("[PlayerController] AudioController missing");
+        }
+        else
+        {
+            audioController = ac.GetComponent<AudioController>();
         }
     }
 
@@ -111,6 +121,8 @@ public class PlayerController : MonoBehaviour
             {
                 //game over
                 gameController.gameOver = true;
+                audioController.GetComponent<AudioSource>().Stop();
+                audioController.DeathSound();
             }
         }
     }
