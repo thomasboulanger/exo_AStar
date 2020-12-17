@@ -14,7 +14,6 @@ public class ProjectilesSpawn : MonoBehaviour
     private Vector3 _centerOfMap;
     private float _XPos;
     private float _YPos;
-    private Vector3 _projectileDirection;
     private float _projectileViewDirection;
 
     void Start()
@@ -24,29 +23,26 @@ public class ProjectilesSpawn : MonoBehaviour
 
     public void SpawnProjectile()
     {
-        int switchCase = Random.Range(0, 3);
-        float randomAngle = Random.Range(0f, (float)2 * Mathf.PI);
-        _XPos = Mathf.Cos(randomAngle)* distance + _centerOfMap.x;
-        _YPos = -Mathf.Sin(randomAngle) * distance + _centerOfMap.z;
+        int whatPropsToSpawn = Random.Range(0, 3);
+        float randomAngleToSpawn = Random.Range(0f, (float)2 * Mathf.PI);
+        _XPos = Mathf.Cos(randomAngleToSpawn)* distance + _centerOfMap.x;
+        _YPos = -Mathf.Sin(randomAngleToSpawn) * distance + _centerOfMap.z;
         Vector3 spawnPos = new Vector3(_XPos, 1f, _YPos);
         _projectileViewDirection = Random.Range(-30f,30f);
-        
-        
-        GameObject go = null;
+        GameObject projectile = null;
 
-        switch (switchCase)
+        switch (whatPropsToSpawn)
         {
             case 0:
-                go = Instantiate(projectile_1, spawnPos, Quaternion.LookRotation(_centerOfMap - spawnPos));
+                projectile = Instantiate(projectile_1, spawnPos, Quaternion.LookRotation(_centerOfMap - spawnPos));
                 break;
             case 1:
-                go = Instantiate(projectile_2, spawnPos, Quaternion.LookRotation(_centerOfMap - spawnPos));
+                projectile = Instantiate(projectile_2, spawnPos, Quaternion.LookRotation(_centerOfMap - spawnPos));
                 break;
             case 2:
-                go = Instantiate(projectile_3, spawnPos, Quaternion.LookRotation(_centerOfMap - spawnPos));
+                projectile = Instantiate(projectile_3, spawnPos, Quaternion.LookRotation(_centerOfMap - spawnPos));
                 break;
         }
-        go.transform.Rotate(new Vector3(0f, _projectileViewDirection, 0f));
-        Destroy(go, 15f);
+        projectile.transform.Rotate(new Vector3(0f, _projectileViewDirection, 0f));
     }
 }

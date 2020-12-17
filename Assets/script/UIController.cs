@@ -13,9 +13,13 @@ public class UIController : MonoBehaviour
     public Text InGameScoreText;
 
     private GameController gameController;
+    private AudioController audioController;
+
+
     private void Awake()
     {
         var gc = GameObject.FindWithTag("GameController");
+        var ac = GameObject.FindWithTag("AudioController");
         if (null == gc)
         {
             Debug.LogError("[UIController] GameController missing");
@@ -23,6 +27,14 @@ public class UIController : MonoBehaviour
         else
         {
             gameController = gc.GetComponent<GameController>();
+        }
+        if (null == ac)
+        {
+            Debug.LogError("[UIController] AudioController missing");
+        }
+        else
+        {
+            audioController = ac.GetComponent<AudioController>();
         }
     }
 
@@ -36,6 +48,7 @@ public class UIController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            audioController.ButtonClic();
             if (gameController.isPaused)
             {
                 ResumeMenu();

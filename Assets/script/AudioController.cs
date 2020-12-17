@@ -5,6 +5,7 @@ public class AudioController : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip UIClic;
     public AudioClip deathSound;
+    public AudioClip chestSound;
 
     public void DeathSound()
     {
@@ -13,5 +14,8 @@ public class AudioController : MonoBehaviour
     public void ButtonClic()
     {
         audioSource.PlayOneShot(UIClic);
+    }public void TouchChest()
+    {
+        audioSource.PlayOneShot(chestSound);
     }
 }

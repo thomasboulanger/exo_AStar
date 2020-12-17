@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour, AStar.Level
 {
-    [SerializeField] private GameObject mur;
+    [SerializeField] private GameObject wall;
     [SerializeField] private PlayerController player;
     private PlayerController spawnedPlayer;
     [SerializeField] private MazeGenerator mazeGenerator;
@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour, AStar.Level
     private void Start()
     {
         maze = mazeGenerator.CreateMaze();
-        createMaze3D(maze,mur);
+        createMaze3D(maze,wall);
         SpawnPlayer(maze, player);
         SpawnChest(maze, chest);
         isChestActive = true;
@@ -62,7 +62,7 @@ public class GameController : MonoBehaviour, AStar.Level
         do
         {
             nbTry++;
-            if (nbTry >= 10)
+            if (nbTry >= 1000)
             {
                 return (0,0);
             }

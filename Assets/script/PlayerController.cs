@@ -79,6 +79,9 @@ public class PlayerController : MonoBehaviour
             otherPointsInPath.RemoveAt(0);
             moving = true;
         }
+
+        Vector3 center = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+        CollisionDetection(center, .5f);
     }
 
     [SerializeField]
@@ -94,16 +97,6 @@ public class PlayerController : MonoBehaviour
         otherPointsInPath.AddRange(newPath);
     }
 
-
-    private void FixedUpdate()
-    {
-        if (gameController == null || gameController.isPaused)
-        {
-            return;
-        }
-        Vector3 center = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
-        CollisionDetection(center, .5f);
-    }
     public void CollisionDetection(Vector3 center, float radius)
     {
         Collider[] hitColliders = Physics.OverlapSphere(center, radius,collisionLayerMask);
@@ -116,6 +109,7 @@ public class PlayerController : MonoBehaviour
                 score += 100;
                 Destroy(hitCollider.gameObject);
                 gameController.isChestActive = false;
+                audioController.TouchChest();
             }
             if (hitCollider.gameObject.CompareTag("projectile"))
             {
