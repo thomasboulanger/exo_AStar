@@ -49,15 +49,11 @@ public class UIController : MonoBehaviour
         scoreText.text = "" + PlayerController.score.ToString();
         InGameScoreText.text = "" + PlayerController.score.ToString();
 
-        if (gameController.gameOver == true)
+        if (gameController.gameOver == true && !GameOverPanel.activeSelf)
         {
-            gameController.isPaused = true;
-            PauseMenuUI.SetActive(false);
-            InGamePanel.SetActive(false);
-            GameOverPanel.SetActive(true);
+            GameOver();
         }
     }
-
 
     public void PauseMenu()
     {
@@ -71,9 +67,7 @@ public class UIController : MonoBehaviour
     }
     public void RestartLevel()
     {
-        SceneManager.LoadSceneAsync("Game_Scene");
-        gameController.isPaused = false;
-        gameController.gameOver = false;
+        SceneManager.LoadScene("Game_Scene");
     }
     public void QuitButton()
     {
@@ -81,8 +75,13 @@ public class UIController : MonoBehaviour
     }
     public void ReturnToMainMenu()
     {
-        gameController.gameOver = false;
-        gameController.isPaused = false;
-        SceneManager.LoadSceneAsync("Intro_Scene");
+        SceneManager.LoadScene("Intro_Scene");
+    }
+    public void GameOver()
+    {
+        gameController.isPaused = true;
+        PauseMenuUI.SetActive(false);
+        InGamePanel.SetActive(false);
+        GameOverPanel.SetActive(true);
     }
 }

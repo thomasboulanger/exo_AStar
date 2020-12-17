@@ -32,8 +32,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        if (gameController == null || gameController.isPaused)
+        {
+            return;
+        }
         // Mouse click
-        if (Input.GetButtonDown("Fire1") && null != gameController)
+        if (Input.GetButtonDown("Fire1"))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -42,8 +47,7 @@ public class PlayerController : MonoBehaviour
                 //Debug.Log("Raycasting : " + hit.point + " on " + hit.collider.gameObject.tag);
                 if (hit.collider.gameObject.CompareTag(groundTag))
                 {
-                    gameController.MovePlayer(hit.point);
-                    
+                    gameController.MovePlayer(hit.point);                  
                 }
             }
         }
@@ -83,6 +87,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (gameController == null || gameController.isPaused)
+        {
+            return;
+        }
         Vector3 center = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
         CollisionDetection(center, .5f);
     }

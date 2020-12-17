@@ -56,9 +56,16 @@ public class GameController : MonoBehaviour, AStar.Level
      
     (int, int) StartingPoint(int[,] maze)
     {
+        int nbTry = 0;
+
         (int, int) startPoint;
         do
         {
+            nbTry++;
+            if (nbTry >= 10)
+            {
+                return (0,0);
+            }
             startPoint = (Random.Range(0, maze.GetLength(0)), Random.Range(0, maze.GetLength(1)));
         } while (!MazeGenerator.IsFree(maze, startPoint));
         return startPoint;

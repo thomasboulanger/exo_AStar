@@ -8,24 +8,10 @@ using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour
 {
-    public GameObject cube; 
     public int height = 10;
     public int width = 10;
     int roomSize = 3;
     
-
-
-    void Start()
-    {
-        //SpawnCubes(0,100,0,0,0);
-        //CreateMaze();
-    }
-
-    void Update()
-    {
-        
-    }
-
     public int[,] CreateMaze()
     {
 
@@ -176,50 +162,6 @@ public class MazeGenerator : MonoBehaviour
             cells.Add((cell.Item1, bottomY));
         }
         return cells;
-    }
-
-    void SpawnCubes(int step,int maxStep, int x,int y,int z)
-    {
-        int axeIncrement = UnityEngine.Random.Range(1, 4);
-
-        GameObject go = Instantiate(cube, new Vector3(x, y, z), Quaternion.identity);
-        go.name = "obj " + x + y +  z;
-
-
-
-        if (step < maxStep)
-        {
-            int xTest = 0;
-            int yTest = 0;
-            int zTest = 0;
-            do
-            {
-                int n = UnityEngine.Random.Range(0, 2);
-                if (n == 0)
-                    n = -1;
-
-                switch (UnityEngine.Random.Range(1, 4))
-                {
-                    case 1:
-                        xTest = x + n;
-                        yTest = y;
-                        zTest = z;
-                        break;
-                    case 2:
-                        xTest = x;
-                        yTest = y + n;
-                        zTest = z;
-                        break;
-                    case 3:
-                        xTest = x;
-                        yTest = y;
-                        zTest = z + n;
-                        break;
-                }
-            } while (GameObject.Find("obj " + xTest+ yTest+ zTest));
-
-            SpawnCubes(step + 1, maxStep, xTest, yTest, zTest);
-        }
     }
 
     public static bool IsFree(int[,] maze, (int x, int y) pos)
